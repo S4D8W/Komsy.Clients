@@ -1,0 +1,9 @@
+{
+    "editor.formatOnSave": true,
+    "files.exclude": {
+        "**/bin": true,
+        "**/obj": true
+    },
+    "editor.fontSize": 12,
+    "editor.tabSize": 2
+}

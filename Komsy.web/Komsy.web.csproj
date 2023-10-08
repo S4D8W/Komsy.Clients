@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Komsy.uilib\Komsy.uilib.csproj" />
+    <ProjectReference Include="..\Komsy.infrastructure\Komsy.infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
