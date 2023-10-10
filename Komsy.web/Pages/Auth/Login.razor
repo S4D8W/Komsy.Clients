@@ -13,13 +13,26 @@
     </MudCardHeader>
 
     <MudCardContent>
-      <MudForm>
+      <MudForm ref="@LoginFrm" Model="@LoginModel">
+        <MudTextField AutoFocus="true" Label="@Lang.GetText(TextEnum.Email)" @bind-Value="@LoginModel.Email"
+          AdornmentIcon="@Icons.Material.Filled.Person" Adornment="Adornment.End" FullWidth="false" Required="true"
+          Validation=@(LoginValidator.ValidateValue) For="(() =>  LoginModel.Email)" RequiredError="Error">
+        </MudTextField>
 
-      </MudForm>
+        <MudTextField Label="@Lang.GetText(TextEnum.Password)" @bind-Value="@LoginModel.Password"
+          AdornmentIcon="@Icons.Material.Filled.Lock" Adornment="Adornment.End" FullWidth="false" Required="true"
+          InputType="@PasswordInput" Validation=@(LoginValidator.ValidateValue) For="(() =>  LoginModel.Password)"
+          RequiredError="Error" OnAdornmentClick="@TogglePasswordVisibility">
+        </MudTextField>
 
-    </MudCardContent>
+        <MudButton Variant="Variant.Filled" OnClick="@Login" Color="Color.Primary" Class="mt-4"
+          ButtonType="ButtonType.Button">
+          @Lang.GetText(TextEnum.LogIn)</MudButton>
+        </MudForm>
+
+      </MudCardContent>
 
 
-  </MudCard>
+    </MudCard>
 
-</MudContainer>
+  </MudContainer>

@@ -1,11 +1,39 @@
 using System.ComponentModel;
 using Komsy.infrastructure.Auth.Models;
+using Komsy.infrastructure.Auth.Services;
+using Komsy.infrastructure.Auth.Validators;
 using Microsoft.AspNetCore.Components;
+using MudBlazor;
 
 namespace Komsy.web.Pages.Auth {
 
 	public class LoginPage : ComponentBase {
 
 		public LoginModel LoginModel { get; set; } = new LoginModel();
+		public LoginValidator LoginValidator { get; set; } = new LoginValidator();
+		public MudForm LoginFrm { get; set; } = null!;
+		public InputType PasswordInput = InputType.Password;
+		public bool ShowPassword { get; set; } = false;
+		public string PasswordVisibilityIcon = Icons.Material.Filled.VisibilityOff;
+
+		[Inject]
+		public IAuthService authService { get; set; } = null!;
+
+
+		public async Task Login() {
+			var result = await LoginValidator.ValidateAsync(LoginModel);
+			if (!result.IsValid) {
+				return;
+			}
+
+			var loginResult = await authService.Login(LoginModel);
+		}
+
+		public void TogglePasswordVisibility() {
+			ShowPassword = !ShowPassword;
+			PasswordInput = ShowPassword ? InputType.Text : InputType.Password;
+			PasswordVisibilityIcon = ShowPassword ? Icons.Material.Filled.Visibility : Icons.Material.Filled.VisibilityOff;
+		}
+
 	}
 }

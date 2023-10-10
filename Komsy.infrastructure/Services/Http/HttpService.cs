@@ -2,41 +2,50 @@ using System.Text;
 using System.Text.Json;
 
 namespace Komsy.infrastructure.Services.Http {
-	public class HttpService : IHttpService {
-		private readonly HttpClient _httpClient;
+  public class HttpService : IHttpService {
 
-		public HttpService(HttpClient httpClient) {
-			_httpClient = httpClient;
-		}
+    private readonly HttpClient _httpClient;
 
-		public async Task<T> Get<T>(string url) {
-			var response = await _httpClient.GetAsync(url);
+    public HttpService(HttpClient httpClient) {
+      _httpClient = httpClient;
+    }
 
-			if (!response.IsSuccessStatusCode) {
-				throw new ApplicationException(await response.Content.ReadAsStringAsync());
-			}
+    public async Task<T> Get<T>(string url) {
+      var response = await _httpClient.GetAsync(url);
 
-			var content = await response.Content.ReadAsStringAsync();
-			var result = JsonSerializer.Deserialize<T>(content);
-			
-			return result ?? throw new ApplicationException("Problem deserializing data");
-		}
+      if (!response.IsSuccessStatusCode) {
+        throw new ApplicationException(await response.Content.ReadAsStringAsync());
+      }
 
-		public async Task<T> Post<T>(string url, object data) {
-			
-			var json = JsonSerializer.Serialize(data);
-			var dataString = new StringContent(json, Encoding.UTF8, "application/json");
+      var content = await response.Content.ReadAsStringAsync();
+      var result = JsonSerializer.Deserialize<T>(content);
 
-			var response = await _httpClient.PostAsync(url, dataString);
+      return result ?? throw new ApplicationException("Problem deserializing data");
+    }
 
-			if (!response.IsSuccessStatusCode) {
-				throw new ApplicationException(await response.Content.ReadAsStringAsync());
-			}
+    public async Task<T> Post<T>(string url, object data) {
 
-			var content = await response.Content.ReadAsStringAsync();
-			var result = JsonSerializer.Deserialize<T>(content);
-			
-			return result ?? throw new ApplicationException("Problem deserializing data");
-		}
-	}
+      var json = JsonSerializer.Serialize(data);
+      var dataString = new StringContent(json, Encoding.UTF8, "application/json");
+      try {
+        var response = await _httpClient.PostAsync(url, dataString);
+      } catch (Exception ex) {
+        Console.WriteLine(ex.Message);
+
+      }
+      // if (!response.IsSuccessStatusCode) {
+      //   throw new ApplicationException(await response.Content.ReadAsStringAsync());
+      // }
+
+      // var content = await response.Content.ReadAsStringAsync();
+      var result = JsonSerializer.Deserialize<T>("");
+
+      return result ?? throw new ApplicationException("Problem deserializing data");
+
+    }
+
+
+
+
+  }
 }
