@@ -1,8 +1,10 @@
 
-namespace Komsy.infrastructure.Routes {
-  public static class BaseAddresses {
+namespace Komsy.infrastructure.Routes
+{
+  public static class BaseAddresses
+  {
 
-    public static string BaseAddress = "https://localhost:44312/";
+    public static string BaseAddress = "https://localhost:7038/";
   }
 
 }
