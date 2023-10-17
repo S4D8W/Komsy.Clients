@@ -15,8 +15,8 @@
     <MudCardContent>
       <MudForm ref="@LoginFrm" Model="@LoginModel">
         <MudTextField AutoFocus="true" Label="@Lang.GetText(TextEnum.Email)" @bind-Value="@LoginModel.Email"
-          AdornmentIcon="@Icons.Material.Filled.Person" Adornment="Adornment.End" FullWidth="false" Required="true"
-          Validation=@(LoginValidator.ValidateValue) For="(() =>  LoginModel.Email)" RequiredError="Error">
+          AdornmentIcon="@Icons.Material.Filled.Person" Adornment="Adornment.End" FullWidth="false"
+          Validation=@(LoginValidator.ValidateValue) For="(() =>  LoginModel.Email)">
         </MudTextField>
 
         <MudTextField Label="@Lang.GetText(TextEnum.Password)" @bind-Value="@LoginModel.Password"
@@ -24,15 +24,23 @@
           InputType="@PasswordInput" Validation=@(LoginValidator.ValidateValue) For="(() =>  LoginModel.Password)"
           RequiredError="Error" OnAdornmentClick="@TogglePasswordVisibility">
         </MudTextField>
-
+        <div>
+          <MudText class="mt-4 " hidden="@ForogotPasswordVisible" Typo="Typo.h6" Color="Color.Error">
+            @Lang.GetText(TextEnum.ForgotPassword)
+            <MudLink Href="/forgot-password">@Lang.GetText(TextEnum.Remind)</MudLink>
+            </MudText>
+          </div>
+        </MudForm>
         <MudButton Variant="Variant.Filled" OnClick="@Login" Color="Color.Primary" Class="mt-4"
           ButtonType="ButtonType.Button">
-          @Lang.GetText(TextEnum.LogIn)</MudButton>
-        </MudForm>
+          @Lang.GetText(TextEnum.LogIn)
 
-      </MudCardContent>
+      </MudButton>
+    </MudCardContent>
+    <MudCardActions>
 
+    </MudCardActions>
 
-    </MudCard>
+  </MudCard>
 
-  </MudContainer>
+</MudContainer>

@@ -1,0 +1,20 @@
+@page "/forgot-password"
+@layout LogOutLayout
+
+@inherits ForgotPage;
+
+<MudContainer MaxWidth="MaxWidth.Small">
+  <MudCard>
+    <MudCardContent>
+      <MudTypography Typo="Typo.h5">Forgot Password</MudTypography>
+      <MudTypography Typo="Typo.body2">Enter your email address and we will send you a link to reset your password.
+      </MudTypography>
+
+      <MudForm>
+        <MudTextField Label="Email" @bind-Value="Email" />
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ForgotPassword">Send</MudButton>
+      </MudForm>
+    </MudCardContent>
+  </MudCard>
+
+</MudContainer>

@@ -1,12 +1,12 @@
 namespace Komsy.infrastructure.Models.Auth {
-	public class UserModel {
+  public class UserModel {
 
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
-		public string Email { get; set; }
-		public Guid Id { get; set; }
-		public string Token { get; set; }
+    public string FirstName { get; set; } = null!;
+    public string LastName { get; set; } = null!;
+    public string Email { get; set; } = null!;
+    public string UId { get; set; } = null!;
+    public string Token { get; set; } = null!;
 
 
-	}
+  }
 }

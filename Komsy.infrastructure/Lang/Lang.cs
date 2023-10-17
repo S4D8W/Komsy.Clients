@@ -10,6 +10,8 @@ namespace Komsy.infrastructure.Lang {
 		LogIn = 1,
 		Email = 2,
 		Password = 3,
+		ForgotPassword = 4,
+		Remind = 5,
 	}
 
 	public static class Lang {
@@ -23,6 +25,9 @@ namespace Komsy.infrastructure.Lang {
 			AddText(TextEnum.LogIn, "Zaloguj", "Log In");
 			AddText(TextEnum.Email, "Email", "Email");
 			AddText(TextEnum.Password, "Hasło", "Password");
+			AddText(TextEnum.ForgotPassword, "Zapomniałeś hasła?", "Forgot password?");
+			AddText(TextEnum.Remind, "Przypomnij", "Remind");
+
 		}
 
 

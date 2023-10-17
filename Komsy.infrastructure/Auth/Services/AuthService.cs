@@ -7,29 +7,39 @@ namespace Komsy.infrastructure.Auth.Services;
 
 public class AuthService : IAuthService {
 
-	private readonly IHttpService _httpService;
+  private readonly IHttpService _httpService;
 
-	public AuthService(IHttpService httpService) {
-		_httpService = httpService;
-	}
+  public AuthService(IHttpService httpService) {
+    _httpService = httpService;
+  }
 
-	public async Task<UserModel> Login(LoginModel loginModel) {
+  public async Task<UserModel> Login(LoginModel loginModel) {
 
-		var pAddress = AuthAdresses.Login;
-		var result = await _httpService.Post<LoginModel>(pAddress, loginModel);
+    var pAddress = AuthAdresses.Login;
+    var result = await _httpService.Post<AuthResponse>(pAddress, loginModel);
 
-		throw new NotImplementedException();
-	}
+    if (result is null || result.user is null) {
+      return null!;
+    }
 
-	public Task Logout() {
-		throw new NotImplementedException();
-	}
+    return new UserModel {
+      FirstName = result.user.FirstName,
+      LastName = result.user.LastName,
+      Email = result.user.Email,
+      UId = result.user.UId,
+      Token = result.Token
+    };
+  }
 
-	public Task<UserModel> RefreshToken() {
-		throw new NotImplementedException();
-	}
+  public Task Logout() {
+    throw new NotImplementedException();
+  }
 
-	public Task<UserModel> Register(UserModel registerModel) {
-		throw new NotImplementedException();
-	}
+  public Task<UserModel> RefreshToken() {
+    throw new NotImplementedException();
+  }
+
+  public Task<UserModel> Register(UserModel registerModel) {
+    throw new NotImplementedException();
+  }
 }
