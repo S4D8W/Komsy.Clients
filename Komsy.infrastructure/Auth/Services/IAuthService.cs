@@ -8,5 +8,5 @@ public interface IAuthService {
   Task Logout();
   Task<UserModel> Register(UserModel registerModel);
   Task<UserModel> RefreshToken();
-
+  Task<bool> ResetPassword(string email);
 }

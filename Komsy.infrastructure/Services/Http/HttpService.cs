@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Komsy.infrastructure.Models.Auth;
 using Komsy.infrastructure.Services.LocalStorageService;
+using Komsy.Infrastructure.Common.Model;
 using Microsoft.AspNetCore.Components;
 
 namespace Komsy.infrastructure.Services.Http {
@@ -42,16 +43,28 @@ namespace Komsy.infrastructure.Services.Http {
 
     public async Task<T> Post<T>(string url, object data) {
 
+      string content = "";
       var json = JsonSerializer.Serialize(data);
       var dataString = new StringContent(json, Encoding.UTF8, "application/json");
 
       var response = await _httpClient.PostAsync(url, dataString);
 
-      if (!response.IsSuccessStatusCode) {
-        //	throw new ApplicationException(await response.Content.ReadAsStringAsync());
+      if (response.Content is not null) {
+        content = await response.Content.ReadAsStringAsync();
+
       }
 
-      var content = await response.Content.ReadAsStringAsync();
+      if (!response.IsSuccessStatusCode) {
+        ErrorResponse errorResponse = JsonSerializer.Deserialize<ErrorResponse>(content, _JsonOptions)!;
+        if (AppSettings.IsDevelopment) {
+          await _localStorageService.SetItem("errorResponse", errorResponse);
+          _navigationManager.NavigateTo("/SomthingWentWrong");
+          return default!;
+        }
+
+      }
+
+
       var result = JsonSerializer.Deserialize<T>(content, _JsonOptions);
 
       return result ?? default!;

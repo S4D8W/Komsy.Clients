@@ -13,6 +13,17 @@ public class AuthService : IAuthService {
     _httpService = httpService;
   }
 
+  public async Task<bool> ResetPassword(string email) {
+
+    string Address = AuthAdresses.ResetPassword;
+
+    var result = await _httpService.Post<object>(Address, new {
+      email = email
+    });
+
+    return true;
+  }
+
   public async Task<UserModel> Login(LoginModel loginModel) {
 
     var pAddress = AuthAdresses.Login;

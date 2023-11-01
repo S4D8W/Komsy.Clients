@@ -1,0 +1,74 @@
+@page "/SomthingWentWrong"
+
+<MudContainer MaxWidth="MaxWidth.ExtraLarge">
+
+  <MudText Typo="Typo.h4" Align="Align.Center" Color="Color.Primary">@Lang.GetText(TextEnum.SomethingWentWrong)
+  </MudText>
+
+  @if (IsDevelopment && errorResponse is not null)
+  {
+
+
+    <MudPaper class="d-flex flex-column pa-4">
+
+      <div class="d-flex justify-start  gap-4 mb-2 ">
+        <MudText Typo="Typo.body1" Color="Color.Primary">@Lang.GetText(TextEnum.ErrorType):</MudText>
+          <MudText Typo="Typo.body1" Color="Color.Dark">@errorResponse.Type</MudText>
+        </div>
+
+        <div class="d-flex justify-start  gap-4 mb-2 ">
+          <MudText Typo="Typo.body1" Color="Color.Primary">@Lang.GetText(TextEnum.Title):</MudText>
+          <MudText Typo="Typo.body1" Color="Color.Dark">@errorResponse.Title</MudText>
+        </div>
+
+        <div class="d-flex justify-start  gap-4 mb-2 ">
+          <MudText Typo="Typo.body1" Color="Color.Primary">@Lang.GetText(TextEnum.StatusCode):</MudText>
+          <MudText Typo="Typo.body1" Color="Color.Dark">@errorResponse.Status</MudText>
+        </div>
+
+        <div class="d-flex justify-start  gap-4 mb-2 ">
+          <MudText Typo="Typo.body1" Color="Color.Primary">@Lang.GetText(TextEnum.TraceId):</MudText>
+          <MudText Typo="Typo.body1" Color="Color.Dark">@errorResponse.TraceId</MudText>
+        </div>
+
+        <MudDivider />
+        @if (errorResponse.Errors is not null)
+      {
+        @foreach (var pError in errorResponse.Errors)
+        {
+          <div class="d-flex justify-start  gap-4 mb-2 ">
+            <MudText Typo="Typo.body1" Color="Color.Primary">@pError.Key </MudText>
+              @foreach (var pErrorValue in pError.Value)
+            {
+              <MudText Typo="Typo.body1" Color="Color.Dark">@pErrorValue</MudText>
+            }
+          </div>
+        }
+      }
+    </MudPaper>
+
+  }
+
+
+</MudContainer>
+
+
+
+@code {
+
+  [Inject] infrastructure.Services.LocalStorageService.ILocalStorageService localStorage { get; set; } = null!;
+  Infrastructure.Common.Model.ErrorResponse errorResponse { get; set; } = null!;
+  public bool IsDevelopment { get { return infrastructure.AppSettings.IsDevelopment; } }
+  protected override async Task OnInitializedAsync()
+  {
+
+    if (IsDevelopment)
+    {
+      errorResponse = await localStorage.GetItem<Infrastructure.Common.Model.ErrorResponse>("errorResponse");
+
+    }
+
+  }
+
+
+}

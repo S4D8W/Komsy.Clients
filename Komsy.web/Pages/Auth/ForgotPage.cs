@@ -1,3 +1,4 @@
+using Komsy.infrastructure.Auth.Services;
 using Microsoft.AspNetCore.Components;
 
 namespace Komsy.web.Pages.Auth;
@@ -5,9 +6,17 @@ namespace Komsy.web.Pages.Auth;
 
 public class ForgotPage : ComponentBase {
 
-  public string Email { get; set; } = null!;
+	[Inject]
+	IAuthService AuthService { get; set; } = null!;
 
-  public async Task ForgotPassword() {
 
-  }
+	public string Email { get; set; } = null!;
+	public bool ResetPasswprdVisible { get; set; } = false;
+	public async Task ForgotPassword() {
+
+		var result = await AuthService.ResetPassword(Email);
+
+
+
+	}
 }

@@ -12,6 +12,11 @@ namespace Komsy.infrastructure.Lang {
 		Password = 3,
 		ForgotPassword = 4,
 		Remind = 5,
+		SomethingWentWrong = 6,
+		ErrorType = 7,
+		Title = 8,
+		StatusCode = 9,
+		TraceId = 10,
 	}
 
 	public static class Lang {
@@ -27,6 +32,11 @@ namespace Komsy.infrastructure.Lang {
 			AddText(TextEnum.Password, "Hasło", "Password");
 			AddText(TextEnum.ForgotPassword, "Zapomniałeś hasła?", "Forgot password?");
 			AddText(TextEnum.Remind, "Przypomnij", "Remind");
+			AddText(TextEnum.SomethingWentWrong, "Coś poszło nie tak", "Something went wrong");
+			AddText(TextEnum.ErrorType, "Typ błędu", "Error type");
+			AddText(TextEnum.Title, "Tytuł", "Title");
+			AddText(TextEnum.StatusCode, "Kod błędu", "Status code");
+			AddText(TextEnum.TraceId, "Id śladu", "Trace id");
 
 		}
 

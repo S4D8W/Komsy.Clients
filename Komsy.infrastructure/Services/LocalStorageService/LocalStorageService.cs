@@ -5,28 +5,34 @@ namespace Komsy.infrastructure.Services.LocalStorageService;
 
 public class LocalStorageService : ILocalStorageService {
 
-  private readonly IJSRuntime _jsRuntime;
+	private readonly IJSRuntime _jsRuntime;
 
-  public async Task<T> GetItem<T>(string key) {
+	public LocalStorageService(IJSRuntime jsRuntime) {
 
-    var result = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", key);
+		_jsRuntime = jsRuntime;
 
-    if (result == null) {
-      return default!;
-    }
+	}
 
-    return JsonSerializer.Deserialize<T>(result)!;
+	public async Task<T> GetItem<T>(string key) {
 
-  }
+		var result = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", key);
 
-  public async Task RemoveItem(string key) {
+		if (result == null) {
+			return default!;
+		}
 
-    await _jsRuntime.InvokeVoidAsync("localStorage.removeItem", key);
+		return JsonSerializer.Deserialize<T>(result)!;
 
-  }
+	}
 
-  public async Task SetItem<T>(string key, T value) {
+	public async Task RemoveItem(string key) {
 
-    await _jsRuntime.InvokeVoidAsync("localStorage.setItem", key, JsonSerializer.Serialize(value));
-  }
+		await _jsRuntime.InvokeVoidAsync("localStorage.removeItem", key);
+
+	}
+
+	public async Task SetItem<T>(string key, T value) {
+
+		await _jsRuntime.InvokeVoidAsync("localStorage.setItem", key, JsonSerializer.Serialize(value));
+	}
 }
