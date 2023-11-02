@@ -17,6 +17,10 @@ namespace Komsy.infrastructure.Lang {
 		Title = 8,
 		StatusCode = 9,
 		TraceId = 10,
+		Send = 11,
+		EnterYourEmailAddressAndWeWillWendYouNewPassword = 12,
+		SignUp = 13,
+		SingIn = 14,
 	}
 
 	public static class Lang {
@@ -37,7 +41,10 @@ namespace Komsy.infrastructure.Lang {
 			AddText(TextEnum.Title, "Tytuł", "Title");
 			AddText(TextEnum.StatusCode, "Kod błędu", "Status code");
 			AddText(TextEnum.TraceId, "Id śladu", "Trace id");
-
+			AddText(TextEnum.Send, "Wyślij", "Send");
+			AddText(TextEnum.EnterYourEmailAddressAndWeWillWendYouNewPassword, "Wpisz swój adres e-mail, a wyślemy Ci nowe hasło", "Enter your email address and we will send you a new password");
+			AddText(TextEnum.SignUp, "Zarejestruj się", "Sign up");
+			AddText(TextEnum.SingIn, "Zaloguj się", "Sign in");
 		}
 
 

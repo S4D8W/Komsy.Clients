@@ -5,14 +5,19 @@
 
 <MudContainer MaxWidth="MaxWidth.Small">
   <MudCard>
+    <MudCardHeader class="justify-center">
+      <MudIcon Icon="@Icons.Outlined.Lightbulb" Size="Size.Medium" Color="Color.Primary" />
+      <MudText Align="Align.Center" Typo="Typo.h6">@Lang.GetText(TextEnum.ForgotPassword)</MudText>
+    </MudCardHeader>
     <MudCardContent>
-      <MudTypography Typo="Typo.h5">Forgot Password</MudTypography>
-      <MudTypography Typo="Typo.body2">Enter your email address and we will send you a link to reset your password.
-      </MudTypography>
+
+      <MudText Typo="Typo.body2">@Lang.GetText(TextEnum.EnterYourEmailAddressAndWeWillWendYouNewPassword)
+      </MudText>
 
       <MudForm>
         <MudTextField Label="Email" @bind-Value="Email" />
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ForgotPassword">Send</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ForgotPassword" class="mt-4">
+          @Lang.GetText(TextEnum.Send)</MudButton>
       </MudForm>
     </MudCardContent>
   </MudCard>

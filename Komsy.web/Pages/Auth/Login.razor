@@ -28,14 +28,18 @@
           <MudText class="mt-4 " hidden="@ForogotPasswordVisible" Typo="Typo.h6" Color="Color.Error">
             @Lang.GetText(TextEnum.ForgotPassword)
             <MudLink Href="/forgot-password">@Lang.GetText(TextEnum.Remind)</MudLink>
-            </MudText>
-          </div>
-        </MudForm>
+          </MudText>
+        </div>
+      </MudForm>
+      <div class="d-flex flex-column">
         <MudButton Variant="Variant.Filled" OnClick="@Login" Color="Color.Primary" Class="mt-4"
           ButtonType="ButtonType.Button">
           @Lang.GetText(TextEnum.LogIn)
 
-      </MudButton>
+        </MudButton>
+
+        <MudLink class="mt-4" Href="#"> dont have account? </MudLink>
+      </div>
     </MudCardContent>
     <MudCardActions>
 
