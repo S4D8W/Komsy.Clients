@@ -1,4 +1,4 @@
-namespace Komsy.infrastructure.Models.Auth {
+namespace Komsy.infrastructure.Auth.Models {
   public class UserModel {
 
     public string FirstName { get; set; } = null!;

@@ -1,5 +1,5 @@
 using System.Globalization;
-namespace Komsy.infrastructure.Lang {
+namespace Komsy.infrastructure.Languages {
 
 	public enum LangEnum {
 		PL = 1,
@@ -21,6 +21,15 @@ namespace Komsy.infrastructure.Lang {
 		EnterYourEmailAddressAndWeWillWendYouNewPassword = 12,
 		SignUp = 13,
 		SingIn = 14,
+		PleaseValidEmail = 15,
+		EmailDoesntEmpty = 16,
+		PasswordDoesntEmpty = 17,
+		PasswordMinimumLength = 18,
+		PasswordsNotMatch = 19,
+		FirstName = 20,
+		LastName = 21,
+		ConfirmPassword = 22,
+		DontHaveAccountSignIn = 23,
 	}
 
 	public static class Lang {
@@ -45,6 +54,15 @@ namespace Komsy.infrastructure.Lang {
 			AddText(TextEnum.EnterYourEmailAddressAndWeWillWendYouNewPassword, "Wpisz swój adres e-mail, a wyślemy Ci nowe hasło", "Enter your email address and we will send you a new password");
 			AddText(TextEnum.SignUp, "Zarejestruj się", "Sign up");
 			AddText(TextEnum.SingIn, "Zaloguj się", "Sign in");
+			AddText(TextEnum.PleaseValidEmail, "Proszę podać poprawny adres email", "Please enter a valid email address");
+			AddText(TextEnum.EmailDoesntEmpty, "Email nie może być pusty", "Email can't be empty");
+			AddText(TextEnum.PasswordDoesntEmpty, "Hasło nie może być puste", "Password can't be empty");
+			AddText(TextEnum.PasswordMinimumLength, "Hasło musi mieć minimum 8 znaków", "Password must be at least 8 characters long");
+			AddText(TextEnum.PasswordsNotMatch, "Hasła nie są takie same", "Passwords are not the same");
+			AddText(TextEnum.FirstName, "Imię", "First name");
+			AddText(TextEnum.LastName, "Nazwisko", "Last name");
+			AddText(TextEnum.ConfirmPassword, "Potwierdź hasło", "Confirm password");
+			AddText(TextEnum.DontHaveAccountSignIn, "Nie masz konta? Zarejestruj się", "Don't have an account? Sign up");
 		}
 
 

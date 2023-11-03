@@ -1,5 +1,4 @@
 using Komsy.infrastructure.Auth.Models;
-using Komsy.infrastructure.Models.Auth;
 using Komsy.infrastructure.Routes;
 using Komsy.infrastructure.Services.Http;
 

@@ -1,0 +1,50 @@
+@page "/SignUp";
+@layout LogOutLayout;
+@inherits SignUp;
+
+
+<MudContainer MaxWidth="MaxWidth.Small">
+  <MudCard>
+    <MudCardHeader class="justify-center">
+      <MudText Typo="Typo.h4" Align="Align.Center">Sign Up</MudText>
+    </MudCardHeader>
+    <MudCardContent>
+
+      <MudForm Model="@SignUpModel" @ref="@SignUpFrm">
+
+        <MudTextField AutoFocus="true" Label="@Lang.GetText(TextEnum.FirstName)" @bind-Value="SignUpModel.FirstName"
+          Validation=@(SignUpValidator.ValidateValue) For="(() =>  SignUpModel.FirstName)">
+        </MudTextField>
+
+        <MudTextField Label="@Lang.GetText(TextEnum.LastName)" @bind-Value="SignUpModel.LastName"
+          Validation=@(SignUpValidator.ValidateValue) For="(() =>  SignUpModel.LastName)">
+        </MudTextField>
+
+        <MudTextField Label="@Lang.GetText(TextEnum.Email)" Validation=@(SignUpValidator.ValidateValue)
+          For="(() =>  SignUpModel.Email)" T="string" ValueChanged="@(async(x) => await CheckEmailIsAllredyTaken(x))">
+        </MudTextField>
+
+        <MudTextField Label="@Lang.GetText(TextEnum.Password)" InputType="InputType.Password"
+          @bind-Value="SignUpModel.Password" Validation=@(SignUpValidator.ValidateValue)
+          For="(() =>  SignUpModel.Password)">
+
+        </MudTextField>
+
+        <MudTextField Label="@Lang.GetText(TextEnum.ConfirmPassword)" @bind-Value="SignUpModel.ConfirmPassword"
+          Validation=@(SignUpValidator.ValidateValue) For="(() =>  SignUpModel.ConfirmPassword)">
+        </MudTextField>
+
+        <div class="d-flex flex-column">
+          <MudButton Variant="Variant.Filled" OnClick="@SignUpSubmit" Color="Color.Primary" Class="mt-4"
+            ButtonType="ButtonType.Button">
+            @Lang.GetText(TextEnum.SignUp)
+
+          </MudButton>
+
+          <MudLink class="mt-4" Href="Login"> @Lang.GetText(TextEnum.SingIn)</MudLink>
+        </div>
+
+      </MudForm>
+    </MudCardContent>
+  </MudCard>
+</MudContainer>

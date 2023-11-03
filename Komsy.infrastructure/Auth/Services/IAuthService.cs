@@ -1,5 +1,4 @@
 using Komsy.infrastructure.Auth.Models;
-using Komsy.infrastructure.Models.Auth;
 
 namespace Komsy.infrastructure.Auth.Services;
 

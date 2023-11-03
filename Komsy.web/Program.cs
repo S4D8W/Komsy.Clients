@@ -1,7 +1,7 @@
 ﻿using System;
 using Komsy.infrastructure;
 using Komsy.infrastructure.Auth.Services;
-using Komsy.infrastructure.Lang;
+using Komsy.infrastructure.Languages;
 using Komsy.infrastructure.Services.Http;
 using Komsy.infrastructure.Services.LocalStorageService;
 using Komsy.web;
