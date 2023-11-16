@@ -24,14 +24,18 @@
           For="(() =>  SignUpModel.Email)" T="string" ValueChanged="@(async(x) => await CheckEmailIsAllredyTaken(x))">
         </MudTextField>
 
-        <MudTextField Label="@Lang.GetText(TextEnum.Password)" InputType="InputType.Password"
+        <MudTextField Label="@Lang.GetText(TextEnum.Password)" InputType="@PasswordInput"
           @bind-Value="SignUpModel.Password" Validation=@(SignUpValidator.ValidateValue)
-          For="(() =>  SignUpModel.Password)">
+          For="(() =>  SignUpModel.Password)" AdornmentIcon=@(ShowPassword == true ? Icons.Material.Filled.Visibility :
+          Icons.Material.Filled.VisibilityOff) Adornment="Adornment.End" OnAdornmentClick="@TogglePasswordVisibility">
 
         </MudTextField>
 
         <MudTextField Label="@Lang.GetText(TextEnum.ConfirmPassword)" @bind-Value="SignUpModel.ConfirmPassword"
-          Validation=@(SignUpValidator.ValidateValue) For="(() =>  SignUpModel.ConfirmPassword)">
+          Validation=@(SignUpValidator.ValidateValue) For="(() =>  SignUpModel.ConfirmPassword)"
+          InputType="@ConfirmPasswordInput" AdornmentIcon=@(ShowConfirmPassword == true ?
+          Icons.Material.Filled.Visibility : Icons.Material.Filled.VisibilityOff) Adornment="Adornment.End"
+          OnAdornmentClick="@ToggleConfirmPasswordVisibility">
         </MudTextField>
 
         <div class="d-flex flex-column">

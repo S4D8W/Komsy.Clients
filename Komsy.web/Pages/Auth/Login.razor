@@ -14,7 +14,7 @@
 
     <MudCardContent>
       <MudForm ref="@LoginFrm" Model="@LoginModel">
-        <MudTextField AutoFocus="true" Label="@Lang.GetText(TextEnum.Email)" @bind-Value="@LoginModel.Email"
+        <MudTextField Label="@Lang.GetText(TextEnum.Email)" @bind-Value="@LoginModel.Email"
           AdornmentIcon="@Icons.Material.Filled.Person" Adornment="Adornment.End" FullWidth="false"
           Validation=@(LoginValidator.ValidateValue) For="(() =>  LoginModel.Email)">
         </MudTextField>

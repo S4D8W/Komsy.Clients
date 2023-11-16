@@ -1,6 +1,7 @@
 using Komsy.infrastructure.Auth.Models;
 using Komsy.infrastructure.Routes;
 using Komsy.infrastructure.Services.Http;
+using Komsy.Infrastructure.Auth.Models;
 
 namespace Komsy.infrastructure.Auth.Services;
 
@@ -49,7 +50,23 @@ public class AuthService : IAuthService {
     throw new NotImplementedException();
   }
 
-  public Task<UserModel> Register(UserModel registerModel) {
-    throw new NotImplementedException();
+  public async Task<UserModel> SignUp(SignUpModel registerModel) {
+
+    AuthResponse response = await
+     _httpService.Post<AuthResponse>(AuthAdresses.Register, registerModel);
+
+
+    if (response is null || response.user is null) {
+      return null!;
+    }
+
+    return new UserModel {
+      FirstName = response.user.FirstName,
+      LastName = response.user.LastName,
+      Email = response.user.Email,
+      UId = response.user.UId,
+      Token = response.Token
+    };
+
   }
 }
